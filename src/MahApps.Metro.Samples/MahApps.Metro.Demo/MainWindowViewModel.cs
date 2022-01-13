@@ -213,6 +213,22 @@ namespace MetroDemo
                                                                                   async x => { await this._dialogCoordinator.ShowMessageAsync(this, "ToggleSwitch", "The ToggleSwitch is now Off."); });
 
             this.MyObjectParser = new ObjectParser(this, this._dialogCoordinator);
+
+            int count = 0;
+
+            SelectedAnimals.CollectionChanged += (sender, args) =>
+            {
+                System.Diagnostics.Debug.WriteLine("CollectionChanged Pass: " + count);
+
+                ObservableCollection<string> copy = SelectedAnimals;
+
+                for (int i = 0; i < copy.Count; i++)
+                {
+                    System.Diagnostics.Debug.WriteLine("Item: " + copy[i]);
+                }
+
+                count++;
+            };
         }
 
         public ICommand ArtistsDropDownCommand { get; }
